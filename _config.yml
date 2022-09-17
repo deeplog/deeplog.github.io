@@ -18,13 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Monos
-email: ejjoo7994@gmail.com
+title: DeepLog
+email: kwanwoo.kim@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Themed by ejjoo
+  깊이 생각하면 ..
 # baseurl: "/" # the subpath of your site, e.g. /blog
 # url: "http://ejjoo.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: ejjoo
+github_username: deeplog
 highlighter: rouge
 svg:
   optimize: true
@@ -37,6 +37,10 @@ plugins:
 category_dir: category/
 tag_dir: tag/
 
+collectrions:
+  authors:
+    title: Authors
+    output: true
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
