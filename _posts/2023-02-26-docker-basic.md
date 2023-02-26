@@ -4,7 +4,7 @@ layout: post
 category: Docker
 ---
 
-## 윈도우즈11에서 리눅스 설치
+## Docker Pull
 
 
 
