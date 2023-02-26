@@ -8,7 +8,7 @@ category: Docker
 
 
 
-윈도우즈용 리눅스(Windows subsystem for linux)에 도커를 설치하는 방법을 정리한다. 윈도우즈용 리눅스를 설치하는 방법은 [윈도우즈11에서 리눅스 설치](.//docker-setup.md) 를 참고하라. 
+윈도우즈용 리눅스(Windows subsystem for linux)에 도커를 설치하는 방법을 정리한다. 윈도우즈용 리눅스를 설치하는 방법은 [윈도우즈11에서 리눅스 설치](./docker-setup.md) 를 참고하라. 
 
 ### 1. 윈도우즈 Ubuntu 버전 확인
 
