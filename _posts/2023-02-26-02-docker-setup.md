@@ -1,5 +1,5 @@
 ---
-title: 윈도우즈용 Linux에 Docker 설치
+title: 02. Docker 설치
 layout: post
 category: Docker
 ---
