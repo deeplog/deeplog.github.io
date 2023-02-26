@@ -4,9 +4,11 @@ layout: post
 category: Docker
 ---
 
-출처: 본 강의는 [생활코딩 도커편](http://opentutorials.org/course/128/8657/)을 참고하여 작성하였습니다. 
+출처: 본 문서는 [생활코딩 도커편](http://opentutorials.org/course/128/8657/)을 참고하여 작성하였습니다. 
 
 
+
+* 선행 작업으로 [Docker pull](https://deeplog.github.io/docker/2023/02/26/03-docker-pull.html)을 통한 아파치 서버 이미지가 먼저 pull 되어 있어야 됩니다. 
 
 ## 포트 포워딩
 
