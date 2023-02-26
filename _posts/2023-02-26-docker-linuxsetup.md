@@ -18,7 +18,7 @@ category: Docker
 * Linux용 Windows 하위시스템 및 가상머신 플랫폼 선택
 * 확인 후 컴퓨터 재시작하기 
 
-![image-20230226091734742](D:\dev\deeplog.github.io\public\img\image-20230226091734742.png)
+![image-20230226091734742](/public/img/image-20230226091734742.png)
 
 
 
@@ -28,5 +28,27 @@ category: Docker
 
 * 500.7MB 라서 다운로드 하는데 시간이 걸릴 수 있음
 
-  ![image-20230226092604388](D:\dev\deeplog.github.io\public\img\image-20230226092604388.png)
+* 열기 버튼을 누르면 설치를 진행함
 
+  ![image-20230226092604388](/public/img/image-20230226092604388.png)
+
+* 설치중 다음과 같은 오류를 만나면  WSL2 Linux Kernel Update를 설치해준다. (WSL = windows subsytem for linux)
+* 다운로드 링크: https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+![img](/public/img/wslerror.png)
+
+
+
+### 3. Ubutu 셋업
+
+* ubuntu 설치가 되면 다음과 같이 설치 과정중 설정 작업을 요청한다. 
+
+* ID, Password 작업을 설정하면 윈도우즈에서 리눅스를 사용할 수 있다.
+
+  ```shell
+  Enter new UNIX username: testuser
+  Enter new UNIX password:
+  Retype new UNIX password:
+  ```
+
+  

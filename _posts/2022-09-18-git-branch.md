@@ -48,4 +48,4 @@ __주의사항: Push로 내보낸 commit은 절대 rebase 하지 말것__
 ##### git rebase 예제
 
 
-![](/public/img/merge_rebase.png))
+![](/public/img/merge_rebase.png)
