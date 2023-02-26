@@ -19,7 +19,11 @@ Docker를 기본적으로 사용해보자
 
 ![image-20230226164546634](/public/img/image-20230226164546634.png)
 
-`docker pull httpd` 
+```shell
+$ docker pull httpd
+```
+
+ 
 
 ### 2. 이미지 다운로드 확인
 
@@ -34,6 +38,3 @@ hello-world   latest    feb5d9fea6a5   17 months ago   13.3kB
 user@DESKTOP-PPEIC48:~$
 ```
 
-
-
-### 
