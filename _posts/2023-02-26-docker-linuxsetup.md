@@ -128,4 +128,15 @@ $ sudo service docker start
        to your terminal.
    ```
 
+
+3. docker images로 확인하기
+
+   ```shell
+   user@DESKTOP-PPEIC48:~$ sudo docker images
+   REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+   httpd         latest    3a4ea134cf8e   2 weeks ago     145MB
+   hello-world   latest    feb5d9fea6a5   17 months ago   13.3kB
+   ```
+
    
+
