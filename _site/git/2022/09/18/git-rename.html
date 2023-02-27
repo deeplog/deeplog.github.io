@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">7</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			Git Rename
+		</div>
+		<time class="post-date dt-published" datetime="2022-09-18T00:00:00+09:00" itemprop="datePublished">2022/09/18
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<h4 id="reset">Reset</h4>
+
+<p>HEAD reset</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft HEAD~
+</code></pre></div></div>
+
+<p>HEAD + Index reset</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 아래 두개는 동일한 의미임
+git reset --mixed HEAD~
+git reset HEAD~
+</code></pre></div></div>
+
+<p>HEAD + Index + Working Directory Reset</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --hard HEAD~
+</code></pre></div></div>
+<p>Unstaged 상태로 만들기</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset file.txt
+</code></pre></div></div>
+<p>reset을 하면 stage와 head를 이전 상태로 되돌리기 때문이다.<br />
+대신 working directory에 영향을 주지는 않는다.<br />
+git add 를 되돌리고 싶을때 사용하면 된다.</p>
+
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>

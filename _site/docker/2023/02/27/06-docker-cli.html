@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">7</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			06. Docker Exec
+		</div>
+		<time class="post-date dt-published" datetime="2023-02-27T00:00:00+09:00" itemprop="datePublished">2023/02/27
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<p>출처: 본 문서는 <a href="http://opentutorials.org/course/128/8657/">생활코딩 도커편</a>을 참고하여 작성하였습니다.</p>
+
+<p>본 장을 실행하기에 앞서 httpd 웹서버가 먼저 실행되어 있어야 한다. 이를 실행하기 위해서는 <a href="https://deeplog.github.io/docker/2023/02/26/04-docker-run.html">docker run</a> 을 참고하시오.</p>
+
+<h2 id="명령어-실행">명령어 실행</h2>
+
+<p>Container들어가서 직접 명령어를 실행해야 될 수도 있지만 밖에서 명령을 주어야 할 때도 있다. 이럴 경우 <a href="https://docs.docker.com/engine/reference/commandline/exec/">docker exec</a> 를 이용하면 된다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec </span>ws <span class="nb">pwd</span>
+/usr/local/apache2
+</code></pre></div></div>
+
+<p>Container와 지속적으로 연결하면서 명령을 주고 싶을 때는 다음과 같이 shell 프로그램을 실행시킨다. 대신에 지속적으로 연결 시키기 위해서  옵션 i와 t를 같이 준다. docker 컨테이너에 표준 입력(stdin)을 열어두고(-i, interactive), 가상 터미널을 열어(-t, tty) 키보드의 입력을 표준 입력으로 전달할 수 있도록 하는 옵션입니다.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> ws /bin/sh
+<span class="c"># pwd</span>
+/usr/local/apache2
+</code></pre></div></div>
+
+<h2 id="컨테이너-안에-vim-설치">컨테이너 안에 VIM 설치</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker <span class="nb">exec</span> <span class="nt">-it</span> ws /bin/bash
+<span class="nv">$ </span>apt-get update
+<span class="nv">$ </span>apt-get upgrade
+<span class="nv">$ </span>apt-get <span class="nb">install </span>vim
+</code></pre></div></div>
+
+<h2 id="컨테이너-내의-파일-수정하기">컨테이너 내의 파일 수정하기</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /usr/local/apache2/htdocs/
+<span class="nv">$ </span>vi index.html
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>
+            Hello Docker
+        <span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>

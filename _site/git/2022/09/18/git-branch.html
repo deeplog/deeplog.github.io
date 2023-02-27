@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">7</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			Git Branch
+		</div>
+		<time class="post-date dt-published" datetime="2022-09-18T00:00:00+09:00" itemprop="datePublished">2022/09/18
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<h3 id="브랜치-관리">브랜치 관리</h3>
+<ul>
+  <li><code class="highlighter-rouge">git branch</code> :  브랜치의 목록을 보여준다.</li>
+  <li><code class="highlighter-rouge">git branch --merged</code> : merged 목록을 보여준다.</li>
+  <li><code class="highlighter-rouge">git branch --no-merged</code></li>
+</ul>
+
+<h3 id="브랜치-워크-플로우">브랜치 워크 플로우</h3>
+<h5 id="long-running-브랜치">Long-Running 브랜치</h5>
+<p>Master를 기본으로 하고 develop으로 개발하다가 안정적이 되면 master에 머지한다.</p>
+<h5 id="토픽-브랜치">토픽 브랜치</h5>
+<p>어떤 한가지 주제나  작업을 위해 만든 짧은 호흡의 브랜치</p>
+
+<h3 id="리모트-브랜치">리모트 브랜치</h3>
+<h5 id="git-fetch--push">git fetch / push</h5>
+<p>리무트 트래킹 브랜치는 로컬에 있지만 임의로 움직일 수 없다. <br /> <code class="highlighter-rouge">origin/master</code> 는 origin에 있는 branch 마스터를 가리키는 포인터이다.<br />
+origin에서 데이터 가져오기: <code class="highlighter-rouge">git fetch origin</code><br />
+이 명령어는 origin서버의 데이터를 가져와서 origin/master가 서버의 commit을 가리키도록 한다.<br />
+git fetch 는 수정할 수 있는 브랜치가 아니며 단순히 수정을 하지 못하는 origin/master라는 브랜치 포인터를 생성한다.<br />
+git push remote branch - 서버에 푸시한다.</p>
+
+<h5 id="브랜치-tracking">브랜치 tracking</h5>
+<p><code class="highlighter-rouge">git merge origin/serverfix</code> 명령을 사용한다.<br />
+<code class="highlighter-rouge">git checkout -b serverfix origin/serverfix</code> 추적할 수 있는 트래킹 브랜치를 로컬에 만들고 체크아웃한다.<br />
+ <code class="highlighter-rouge">git brach -vv</code>: 로컬 브랜치와 추적하는 리무트 브랜치를 같이 보여준다.</p>
+
+<h5 id="pull">Pull</h5>
+<p>서버로부터 데이터를 가져와서 현재 로컬 브랜치와 추적 브랜치를 merge한다.<br />
+git fetch를 실행한후 git merge를 생하는 것과 같은 의미</p>
+
+<h5 id="리무트-브랜치-삭제하기">리무트 브랜치 삭제하기</h5>
+<p><code class="highlighter-rouge">git push origin --delete serverfix</code></p>
+
+<h5 id="rebase">Rebase</h5>
+<p>한 브랜치의 base를 다른 브랜치의 최신 커밋으로 옮기는 것
+복잡한 형태의 브랜치를 단순하게 유지시킬 수 있는 장점이 있다.<br />
+로컬에서 히스토리 정리하는데 사용하는 용도가 됨</p>
+
+<p><strong>주의사항: Push로 내보낸 commit은 절대 rebase 하지 말것</strong></p>
+
+<ul>
+  <li>step1: <code class="highlighter-rouge">git checkout feature</code></li>
+  <li>step2: <code class="highlighter-rouge">git rebase master</code></li>
+</ul>
+
+<h5 id="git-rebase-예제">git rebase 예제</h5>
+
+<p><img src="/public/img/merge_rebase.png" alt="" /></p>
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>

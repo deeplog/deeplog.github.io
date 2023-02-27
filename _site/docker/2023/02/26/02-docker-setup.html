@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">7</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			02. Docker 설치
+		</div>
+		<time class="post-date dt-published" datetime="2023-02-26T00:00:00+09:00" itemprop="datePublished">2023/02/26
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<h2 id="윈도우즈용-ubuntu에-도커-설치">윈도우즈용 ubuntu에 도커 설치</h2>
+
+<p>윈도우즈용 리눅스(Windows subsystem for linux)에 도커를 설치하는 방법을 정리한다. 윈도우즈용 리눅스를 설치하는 방법은 <a href="https://deeplog.github.io/docker/2023/02/26/01-linux-setup.html">윈도우즈11에서 리눅스 설치</a> 를 참고하라.</p>
+
+<h3 id="1-윈도우즈-ubuntu-버전-확인">1. 윈도우즈 Ubuntu 버전 확인</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c:<span class="se">\u</span>sers<span class="se">\u</span>ser&gt;wsl <span class="nt">-l</span> <span class="nt">-v</span>
+
+  NAME            STATE           VERSION
+<span class="k">*</span> Ubuntu-22.04    Running         2
+</code></pre></div></div>
+
+<h3 id="2-ubuntu에서-도커-설치">2. Ubuntu에서 도커 설치</h3>
+
+<p>https://docs.docker.com/engine/install/ubuntu/  를 참고해서 설치한다.</p>
+
+<h4 id="레포티토리-셋업">레포티토리 셋업</h4>
+
+<ol>
+  <li>
+    <p>apt-get 업데이트 및 패키지 설치</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="se">\</span>
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    gnupg <span class="se">\</span>
+    lsb-release
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Docker GPG key 추가</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> <span class="nt">-m</span> 0755 <span class="nt">-p</span> /etc/apt/keyrings
+<span class="nv">$ </span>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>gpg <span class="nt">--dearmor</span> <span class="nt">-o</span> /etc/apt/keyrings/docker.gpg
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>레포지토리 셋업</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="se">\</span>
+  <span class="s2">"deb [arch=</span><span class="si">$(</span>dpkg <span class="nt">--print-architecture</span><span class="si">)</span><span class="s2"> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu </span><span class="se">\</span><span class="s2">
+  </span><span class="si">$(</span>lsb_release <span class="nt">-cs</span><span class="si">)</span><span class="s2"> stable"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/docker.list <span class="o">&gt;</span> /dev/null
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="도커-엔진-설치">도커 엔진 설치</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>docker-ce docker-ce-cli containerd.io 
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>docker-buildx-plugin docker-compose-plugin
+</code></pre></div></div>
+
+<h3 id="3-iptables-셋팅">3. IPTables 셋팅</h3>
+
+<p>https://netmarble.engineering/docker-on-wsl2-without-docker-desktop/ 참고해서 iptables를 셋팅한다.</p>
+
+<ul>
+  <li>
+    <p>우분투 버전이 22.04 버전부터 ‘iptables-nft’가 기본 설정으로 잡혀있어서, WSL에서 도커를 사용할 때 호환성 이슈가 발생한다.</p>
+  </li>
+  <li>
+    <p>‘iptables-nft’ 대신 ‘iptables-legacy’를 사용해야 도커 데몬 실행 가능</p>
+  </li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> iptables
+  
+  There are 2 choices <span class="k">for </span>the alternative iptables <span class="o">(</span>providing /usr/sbin/iptables<span class="o">)</span><span class="nb">.</span>
+  
+    Selection    Path                       Priority   Status
+  <span class="nt">------------------------------------------------------------</span>
+  <span class="k">*</span> 0            /usr/sbin/iptables-nft      20        auto mode
+    1            /usr/sbin/iptables-legacy   10        manual mode
+    2            /usr/sbin/iptables-nft      20        manual mode
+  
+  Press &lt;enter&gt; to keep the current choice[<span class="k">*</span><span class="o">]</span>, or <span class="nb">type </span>selection number: 1
+  
+  update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptables <span class="o">(</span>iptables<span class="o">)</span> <span class="k">in </span>manual mode
+</code></pre></div></div>
+
+<h3 id="4-도커-데몬-실행">4. 도커 데몬 실행</h3>
+
+<p>https://help.iwinv.kr/manual/read.html?idx=583 참고해서 Docker 데몬 실행</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service docker start 
+</code></pre></div></div>
+
+<h3 id="5-docker-설치-확인">5. docker 설치 확인</h3>
+
+<ol>
+  <li>
+    <p>docker ps 로 확인하기</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>hello-world로 확인하기</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker run hello-world
+</code></pre></div>    </div>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello from Docker!
+This message shows that your installation appears to be working correctly.
+   
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the <span class="s2">"hello-world"</span> image from the Docker Hub.
+    <span class="o">(</span>amd64<span class="o">)</span>
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>docker images로 확인하기</p>
+
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user@DESKTOP-PPEIC48:~<span class="nv">$ </span><span class="nb">sudo </span>docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+httpd         latest    3a4ea134cf8e   2 weeks ago     145MB
+hello-world   latest    feb5d9fea6a5   17 months ago   13.3kB
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>
