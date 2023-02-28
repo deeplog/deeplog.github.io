@@ -32,12 +32,12 @@ $ docker run -it --name my-python ubuntu
 
 ### 도커 이미지 만들기
 
-docker 밖에서 현재 컨테이너 확인한 다음에 해당 컨테이너를 
+docker 밖에서 현재 컨테이너 확인한 다음에 해당 컨테이너 my-python을 기반으로 하여 이미지를 만든다. 
 
 ```shell
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
-a2c602074a37   ubuntu    "/bin/bash"   3 minutes ago   Up 3 minutes             my-
+a2c602074a37   ubuntu    "/bin/bash"   3 minutes ago   Up 3 minutes             my-python
 
 $ docker commit my-python deeplog/python3:1.0
 sha256:dcef7d99508511b263d7c4e9350e752a948e70b07387d235d1ba8ebe7d207f27
