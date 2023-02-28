@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">10</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			09. Docker Build
+		</div>
+		<time class="post-date dt-published" datetime="2023-02-28T00:00:00+09:00" itemprop="datePublished">2023/02/28
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<p>출처: 본 문서는 <a href="https://www.youtube.com/watch?v=0kQC19w0gTI">생활코딩 도커 이미지 만든 법 - Dockerfile &amp; build</a>을 참고하여 작성하였습니다.</p>
+
+<h2 id="도커-이미지-만들기">도커 이미지 만들기</h2>
+
+<p>나만의 도커 이미지를 만들고 싶을때, 첫번째 방법은 도커 commit 을 이용하는 것이다. 또 하나의 방법은 Dockerfile을 만들어서 Build 는 방법이 있다.  본 문서는 Dockerfile에 build를 적용한 도커 이미지 만들기를 진행한다.</p>
+
+<h3 id="단계--1-도커--파일-만들기">단계  1. 도커  파일 만들기</h3>
+
+<ul>
+  <li>기본 이미지는 ubuntu:20.04로 설정</li>
+  <li>python3를 이미지를 만들면서 설치, 옵션 질문시 yes</li>
+  <li>/var/www/html로 이동 (없으면 폴더를 만들고)</li>
+  <li>python3 기반의 웹서버를 실행</li>
+</ul>
+
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> ubuntu:20.04</span>
+<span class="k">RUN </span>apt update <span class="o">&amp;&amp;</span> apt <span class="nb">install</span> <span class="nt">-y</span> python3
+<span class="k">WORKDIR</span><span class="s"> /var/www/html</span>
+<span class="k">CMD</span><span class="s"> ["python3", "-u", "-m", "http.server"]</span>
+</code></pre></div></div>
+
+<h3 id="단계2-dockerfile을-이용한-이미지-만들기">단계2. Dockerfile을 이용한 이미지 만들기</h3>
+
+<ul>
+  <li>이미지의 이름은  web-server-build (-t 옵션)</li>
+  <li>컨테이너가 실행되고 강제로 삭제</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker build <span class="nt">-t</span> web-server-build <span class="nb">.</span>
+<span class="nv">$ </span>docker <span class="nb">rm</span> <span class="nt">--force</span> web-server
+<span class="nv">$ </span>docker run <span class="nt">-p</span> 8888:8000 <span class="nt">--name</span> web-server web-server-build <span class="nb">pwd</span>
+</code></pre></div></div>
+
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>

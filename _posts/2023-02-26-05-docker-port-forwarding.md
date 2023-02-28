@@ -1,5 +1,5 @@
 ---
-title: 05. Docker Port Forwarding
+title: 05. Docker 포트포워딩
 layout: post
 category: Docker
 ---
@@ -38,4 +38,4 @@ b4d647717358   httpd     "httpd-foreground"   About a minute ago   Up About a mi
 
 웹으로 접속하면 다음과 같은 결과를 볼 수 있다. 
 
-![image-20230226184144910](\public\img\image-20230226184144910.png)
+![image-20230226184144910](/public/img/image-20230226184144910.png)
