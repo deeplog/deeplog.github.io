@@ -63,7 +63,7 @@
 	    <li>
 	    	<a class="nav-item" href="/category/#Docker">
 				<span class="name">Docker</span>
-				<span class="badge">10</span>
+				<span class="badge">11</span>
 	    	</a>
  		</li>
 	    
@@ -79,35 +79,39 @@
 			<article class="post">
 	<header class="post-header">
 		<div class="post-title"> 
-			Git Rename
+			Git Reset
 		</div>
 		<time class="post-date dt-published" datetime="2022-09-18T00:00:00+09:00" itemprop="datePublished">2022/09/18
 		</time>		
 	</header>
 
 	<div class="post-content">
-		<h4 id="reset">Reset</h4>
+		<h2 id="reset">Reset</h2>
 
-<p>HEAD reset</p>
+<p>git에서 commit을 한 이후에 다시 커밋을 되돌리고 싶은 경우가 있다. 이때 git reset을 사용해서 commit을 되돌린다.git reset은 (1) soft reset (2) mixed reset (3) hard reset ,세가지의 옵션이 있다. 개인적으로 Soft와 Mixed는 거의 써 본 적이 없음.</p>
+
+<h3 id="1-soft-reset">1. Soft reset</h3>
+
+<p>soft reset은 git head가 지시한 커밋을 가리키도록 한다. working directory와 staging area는 영향을 미치지 않는다.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --soft HEAD~
 </code></pre></div></div>
 
-<p>HEAD + Index reset</p>
+<h3 id="2-mixed-reset">2. Mixed reset</h3>
+
+<p>mixed reset은  지시한 커밋으로 Head가 가리키게 하며, staging area도  해당 커밋과 동일하게 한다.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 아래 두개는 동일한 의미임
 git reset --mixed HEAD~
 git reset HEAD~
 </code></pre></div></div>
 
-<p>HEAD + Index + Working Directory Reset</p>
+<h3 id="3-hard-reset">3. Hard reset</h3>
+
+<p>Head, staging area, working directory 모두 가리키는 커밋으로 바꾼다.</p>
+
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset --hard HEAD~
 </code></pre></div></div>
-<p>Unstaged 상태로 만들기</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git reset file.txt
-</code></pre></div></div>
-<p>reset을 하면 stage와 head를 이전 상태로 되돌리기 때문이다.<br />
-대신 working directory에 영향을 주지는 않는다.<br />
-git add 를 되돌리고 싶을때 사용하면 된다.</p>
-
 
 	</div>
 </article>

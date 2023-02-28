@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+<style>@import url(/public/css/syntax/monokai.css);</style>
+  <title>DeepLog</title>
+  <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <link href="/public/css/style.css" rel="stylesheet">
+  <body>
+  	<div class="container"> 
+		<div class="sidebar">
+			<div class="sidebar-item sidebar-header">
+	<div class='sidebar-brand'>
+		<a href="/about/">DeepLog</a>
+	</div>
+	<p class="lead"></p></div>
+
+<div class="sidebar-item sidebar-nav">
+	<ul class="nav">
+      <li class="nav-title">Pages</li>
+	  <li>
+	  	<a class="nav-item" href="/">Articles</a>
+	  </li>
+	  
+	  
+	    
+	  
+	    
+	      
+	        <li>
+	        	<a class="nav-item" href="/about/">
+	            	About
+	            </a>
+	        </li>
+	      
+	    
+	  
+	    
+	      
+	    
+	  
+	    
+	  
+	    
+	  
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-nav">
+  	<ul class="nav">
+			<li class="nav-title">Categories</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Git">
+				<span class="name">Git</span>
+				<span class="badge">2</span>
+	    	</a>
+ 		</li>
+	    
+	    <li>
+	    	<a class="nav-item" href="/category/#Docker">
+				<span class="name">Docker</span>
+				<span class="badge">11</span>
+	    	</a>
+ 		</li>
+	    
+	  </nav>
+	</ul>
+</div>
+
+<div class="sidebar-item sidebar-footer">
+	<p>Powered by <a href="https://github.com/deeplog/">deeplog</a></p>
+</div>
+		</div>
+		<div class="content">
+			<article class="post">
+	<header class="post-header">
+		<div class="post-title"> 
+			Docker Compose
+		</div>
+		<time class="post-date dt-published" datetime="2023-02-28T00:00:00+09:00" itemprop="datePublished">2023/02/28
+		</time>		
+	</header>
+
+	<div class="post-content">
+		<p>출처: 본 문서는 <a href="https://www.youtube.com/watch?v=EK6iYRCIjYs">생활코딩 Docker Compose를 이용해서 복잡한 도커 제어하기</a>을 참고하여 작성하였습니다.</p>
+
+<h2 id="docker-compose">Docker Compose</h2>
+
+<p>shell을 이용해서 DB 서버를 만들고, DB와 연동이 되는 App을 만들고 이를 각각의 컨테이너로 만들어서 연동하는 작업을 하기 위해서는 docker run으로 시작하는 쉘 스크립트를 여러 줄에 걸쳐서 작성해야 한다. 이러한 작업의 반복성을 줄이고 향후 유지보수가 용이하기 위해서 yml 파일로 만들어서 관리한다. yml을 실행시키기 위해서는 Docker에서 제공하는 docker compose를 이용한다.</p>
+
+<h3 id="shell-script에-의한-app-실행">Shell Script에 의한 APP 실행</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 도커간의 네트워킹을 위한 네트워크 생성</span>
+<span class="nv">$ </span>docker network create wordpress_net
+
+<span class="nv">$ </span>docker <span class="se">\</span>
+  run <span class="se">\</span>
+    <span class="nt">--name</span> <span class="s2">"db"</span> <span class="se">\</span>
+    <span class="nt">-v</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/db_data:/var/lib/mysql"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"MYSQL_ROOT_PASSWORD=123456"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"MYSQL_DATABASE=wordpress"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"MYSQL_USER=wordpress_user"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"MYSQL_PASSWORD=123456"</span> <span class="se">\</span>
+    <span class="nt">--network</span> wordpress_net <span class="se">\</span>
+    mysql:5.7
+    
+<span class="nv">$ </span>docker <span class="se">\</span>
+    run <span class="se">\</span>
+    <span class="nt">--name</span> app <span class="se">\</span>
+    <span class="nt">-v</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/app_data:/var/www/html"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"WORDPRESS_DB_HOST=db"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"WORDPRESS_DB_USER=wordpress_user"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"WORDPRESS_DB_NAME=wordpress"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"WORDPRESS_DB_PASSWORD=123456"</span> <span class="se">\</span>
+    <span class="nt">-e</span> <span class="s2">"WORDPRESS_DEBUG=1"</span> <span class="se">\</span>
+    <span class="nt">-p</span> 8080:80 <span class="se">\</span>
+    <span class="nt">--network</span> wordpress_net <span class="se">\</span>
+    wordpress:latest
+</code></pre></div></div>
+
+<h3 id="docker-composer에-의한-app-실행">Docker composer에 의한 APP 실행</h3>
+
+<p>도커 composer는 네트워크를 만드는 작업은 필요 없다. 왜냐면 Docker compose가 자동으로 네트워클 만들고 연결해 주기 때문이다.</p>
+
+<p>docker-compose.yml</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.7"</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mysql:5.7</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./db_data:/var/lib/mysql</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">MYSQL_ROOT_PASSWORD</span><span class="pi">:</span> <span class="m">123456</span>
+      <span class="na">MYSQL_DATABASE</span><span class="pi">:</span> <span class="s">wordpress</span>
+      <span class="na">MYSQL_USER</span><span class="pi">:</span> <span class="s">wordpress_user</span>
+      <span class="na">MYSQL_PASSWORD</span><span class="pi">:</span> <span class="m">123456</span>
+  
+  <span class="na">app</span><span class="pi">:</span>
+    <span class="na">depends_on</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s">db</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">wordpress:latest</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./app_data:/var/www/html</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:80"</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">always</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">WORDPRESS_DB_HOST</span><span class="pi">:</span> <span class="s">db:3306</span>
+      <span class="na">WORDPRESS_DB_NAME</span><span class="pi">:</span> <span class="s">wordpress</span>
+      <span class="na">WORDPRESS_DB_USER</span><span class="pi">:</span> <span class="s">wordpress_user</span>
+      <span class="na">WORDPRESS_DB_PASSWORD</span><span class="pi">:</span> <span class="m">123456</span>
+</code></pre></div></div>
+
+<p>Docker Compose 실행</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose up
+</code></pre></div></div>
+
+<p>Docker Compose 종료</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker-compose down
+</code></pre></div></div>
+
+
+	</div>
+</article>
+		</div>
+	</div>
+  </body>
+</html>
