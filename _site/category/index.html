@@ -3,7 +3,27 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /></head>
+	<link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="DeepLog" /><!--KaTeX-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			renderMathInElement(document.body, {
+			  // customised options
+			  // • auto-render specific keys, e.g.:
+			  delimiters: [
+				  {left: '$$', right: '$$', display: true},
+				  {left: '$', right: '$', display: false},
+				  {left: '\\(', right: '\\)', display: false},
+				  {left: '\\[', right: '\\]', display: true}
+			  ],
+			  // • rendering keys, e.g.:
+			  throwOnError : false
+			});
+		});
+	</script>
+</head>
 <style>@import url(/public/css/syntax/monokai.css);</style>
   <title>DeepLog</title>
   <!-- <link href="/public/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -67,6 +87,13 @@
 	    	</a>
  		</li>
 	    
+	    <li>
+	    	<a class="nav-item" href="/category/#TimeSeries">
+				<span class="name">TimeSeries</span>
+				<span class="badge">1</span>
+	    	</a>
+ 		</li>
+	    
 	  </nav>
 	</ul>
 </div>
@@ -81,7 +108,11 @@
 		<div class="post-title">Category - <span id='category-name'></span></div>
 	</header>
 
-	<div class="post-content"><ul class="post-list"><li class="post-list-item post-category-Docker">
+	<div class="post-content"><ul class="post-list"><li class="post-list-item post-category-TimeSeries">
+				<!----><span class="post-date">2023/03/05</span>
+				<a class="post-link" href="/timeseries/2023/03/05/Moving-Average.html">
+					MA 이해하기
+				</a></li><li class="post-list-item post-category-Docker">
 				<!----><span class="post-date">2023/02/28</span>
 				<a class="post-link" href="/docker/2023/02/28/docker-remove.html">
 					Docker 및 Container 삭제

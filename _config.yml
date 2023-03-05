@@ -3,6 +3,8 @@ email: kwanwoo.kim@gmail.com
 description: ''
 github_username: deeplog
 highlighter: rouge
+kramdown:
+    math_engine: katex
 svg:
   optimize: true
 highlighter-theme: monokai
